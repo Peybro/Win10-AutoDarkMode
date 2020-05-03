@@ -16,6 +16,14 @@ const conf = {
 	}
 };
 
+const getTimeConfig = (interval) => {
+	if (interval === "from") {
+
+	} else if (interval === "to") {
+		
+	}
+}
+
 const printTime = () => {
 	console.log(
 		"It's",
