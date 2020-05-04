@@ -1,0 +1,1 @@
+pm2 start ./src/app.js --name AutoDarkMode --watch

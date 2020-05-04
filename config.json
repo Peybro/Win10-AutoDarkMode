@@ -1,0 +1,16 @@
+{
+	"day": {
+		"from": {
+			"hours": 7,
+			"minutes": 0
+		},
+		"to": {
+			"hours": 20,
+			"minutes": 0
+		}
+	},
+	"setting": {
+		"system": true,
+		"apps": true
+	}
+}

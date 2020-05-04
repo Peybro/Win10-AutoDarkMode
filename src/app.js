@@ -3,38 +3,39 @@ const os = require('os');
 const cron = require('node-cron');
 const PowerShell = require('powershell');
 
-const { scripts } = require('./scripts');
-
-const conf = {
-	day     : {
-		from : 7,
-		to   : 20
-	},
-	setting : {
-		system : true,
-		apps   : true
-	}
-};
+const scripts = require('./scripts.json');
+const conf = require('./../config.json');
 
 const getTimeConfig = (interval) => {
-	if (interval === "from") {
+	const now = new Date();
+	return new Date(
+		now.getFullYear(),
+		now.getMonth(),
+		now.getDate(),
 
-	} else if (interval === "to") {
-		
-	}
-}
+			interval === 'from' ? conf.day.from.hours :
+			conf.day.to.hours,
+
+			interval === 'from' ? conf.day.from.minutes :
+			conf.day.to.minutes
+	).toLocaleTimeString();
+};
 
 const printTime = () => {
 	console.log(
 		"It's",
 		new Date().toLocaleTimeString(),
-		`- setting ${new Date().getHours() < conf.day.from || new Date().getHours() >= conf.day.to
-			? 'Night'
-			: 'Day'} Mode.`
+		`- setting ${
+			new Date().toLocaleTimeString() < getTimeConfig('from') ||
+			new Date().toLocaleTimeString() >= getTimeConfig('to') ? 'Night' :
+			'Day'} Mode.`
 	);
 
 	let appsMode, systemMode;
-	if (new Date().getHours() >= conf.day.to) {
+	if (
+		new Date().toLocaleTimeString() < getTimeConfig('from') ||
+		new Date().toLocaleTimeString() >= getTimeConfig('to')
+	) {
 		if (conf.setting.apps) appsMode = new PowerShell(scripts.apps.dark);
 		if (conf.setting.system) systemMode = new PowerShell(scripts.system.dark);
 	} else {
@@ -63,23 +64,24 @@ const printTime = () => {
 			// });
 		}
 	});
+
+	console.log('Waiting for time change...');
 };
 
-if (os.platform() === 'win32') {
+if (os.release().split('.')[0] === '10') {
 	console.clear();
 	printTime();
-	console.log('Waiting for time change...');
 
 	cron.schedule(
-		`0 0 ${conf.day.from},${conf.day.to} * * *`,
+		`0 ${conf.day.from.minutes},${conf.day.to.minutes} ${conf.day.from.hours},${conf.day.to.hours} * * *`,
 		() => {
 			printTime();
 		},
 		{
-			scheduled : true
+			scheduled: true
 		}
 	);
 } else {
-	console.log("I'm sorry, this program is only for users of Windows.");
+	console.log("I'm sorry, this program is only for users of Windows 10.");
 	process.exit(1);
 }
