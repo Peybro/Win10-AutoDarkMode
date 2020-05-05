@@ -2,25 +2,22 @@
   "name": "auto-dark-mode",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "./src/app.js",
   "scripts": {
     "start": "nodemon ./src/app.js",
     "light": "npm run apps-light && npm run system-light",
     "dark": "npm run apps-dark && npm run system-dark",
     "apps-light": "C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe Set-ItemProperty -Path HKCU:/Software/Microsoft/Windows/CurrentVersion/Themes/Personalize -Name AppsUseLightTheme -Value 1",
-		"apps-dark": "C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe Set-ItemProperty -Path HKCU:/Software/Microsoft/Windows/CurrentVersion/Themes/Personalize -Name AppsUseLightTheme -Value 0",
-		"system-light": "C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe Set-ItemProperty -Path HKCU:/Software/Microsoft/Windows/CurrentVersion/Themes/Personalize -Name SystemUsesLightTheme -Value 1",
-		"system-dark": "C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe Set-ItemProperty -Path HKCU:/Software/Microsoft/Windows/CurrentVersion/Themes/Personalize -Name SystemUsesLightTheme -Value 0"
+    "apps-dark": "C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe Set-ItemProperty -Path HKCU:/Software/Microsoft/Windows/CurrentVersion/Themes/Personalize -Name AppsUseLightTheme -Value 0",
+    "system-light": "C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe Set-ItemProperty -Path HKCU:/Software/Microsoft/Windows/CurrentVersion/Themes/Personalize -Name SystemUsesLightTheme -Value 1",
+    "system-dark": "C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe Set-ItemProperty -Path HKCU:/Software/Microsoft/Windows/CurrentVersion/Themes/Personalize -Name SystemUsesLightTheme -Value 0"
   },
   "keywords": [],
-  "author": "",
+  "author": "Thomas Kretschmann",
   "license": "ISC",
   "dependencies": {
-    "daemon": "^1.1.0",
     "node-cron": "^2.0.3",
-    "powershell": "^2.3.1"
-  },
-  "devDependencies": {
+    "regedit": "^3.0.3",
     "nodemon": "^2.0.3"
   }
 }

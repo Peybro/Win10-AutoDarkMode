@@ -1,1 +1,1 @@
-CreateObject("Wscript.Shell").Run "node ./src/app.js", 0
+CreateObject("Wscript.Shell").Run "npm start", 0
