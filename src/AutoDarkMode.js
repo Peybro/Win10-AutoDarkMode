@@ -7,7 +7,7 @@ const scripts = require('./scripts.json');
 const conf = require('./../config.json');
 
 module.exports = class AutoDarkMode {
-	Main() {
+	startListening() {
 		if (os.release().split('.')[0] === '10') {
 			console.clear();
 			this.printTime();

@@ -1,3 +1,3 @@
 const AutoDarkMode =  require("./AutoDarkMode")
 
-new AutoDarkMode().Main();
+new AutoDarkMode().startListening();
