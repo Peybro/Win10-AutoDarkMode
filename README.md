@@ -1,5 +1,5 @@
 # Auto-Dark-Mode for Win10
-This program makes your Windows change the theme automaticallyy based on the time of the day.
+This program makes your Windows change the theme automatically based on the time of the day.
 
 [![ForTheBadge uses-js](http://ForTheBadge.com/images/badges/uses-js.svg)](http://ForTheBadge.com)
 [![ForTheBadge built-with-love](http://ForTheBadge.com/images/badges/built-with-love.svg)](https://GitHub.com/Naereen/)
