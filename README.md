@@ -6,10 +6,31 @@ This program makes your Windows change the theme automatically based on the time
 [![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)
 
 ## Pre-Install
-Install the needed dependencies:
-```
-$ npm i
-```
+* Install the needed dependencies:
+    ```
+    $ npm i
+    ```
+
+* Create a file `config.json` in `./` of the project (same level as `package.json`) and copy-and-paste this structure into it:
+    ```
+    {
+        "day": {
+            "from": {
+                "hours": 7,
+                "minutes": 0
+            },
+            "to": {
+                "hours": 20,
+                "minutes": 0
+            }
+        },
+        "setting": {
+            "system": false,
+            "apps": true
+        },
+        "notification": true
+    }
+    ```
 
 ## Installation
 There are 5 different ways to use this:
