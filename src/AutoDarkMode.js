@@ -7,12 +7,12 @@ const conf = require('./../config.json');
 module.exports = class AutoDarkMode {
 	startListening() {
 		console.clear();
-		this.printTime();
+		this.printTimeToConsole();
 
 		cron.schedule(
 			`0 ${conf.day.from.minutes},${conf.day.to.minutes} ${conf.day.from.hours},${conf.day.to.hours} * * *`,
 			() => {
-				this.printTime();
+				this.printTimeToConsole();
 			},
 			{
 				scheduled: true
@@ -35,7 +35,7 @@ module.exports = class AutoDarkMode {
 		).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 	}
 
-	printTime() {
+	printTimeToConsole() {
 		console.log(this.getPrintMessage());
 
 		this.setMode();
@@ -78,38 +78,18 @@ module.exports = class AutoDarkMode {
 	}
 
 	notify() {
-		// new nn.NotificationCenter(options).notify();
-		// new nn.NotifySend(options).notify();
-		// new nn.WindowsToaster(options).notify(options);
-		// new nn.WindowsBalloon(options).notify(options);
-		// new nn.Growl(options).notify(options);
-
 		notifier.notify(
 			{
 				title: 'Auto-Dark-Mode',
-				subtitle: undefined,
 				message: this.getPrintMessage(),
 				sound: false, // Case Sensitive string for location of sound file, or use one of macOS' native sounds (see below)
 				icon: 'Terminal Icon', // Absolute Path to Triggering Icon
-				contentImage: undefined, // Absolute Path to Attached Image (Content Image)
-				open: undefined, // URL to open on Click
-				wait: false, // Wait for User Action against Notification or times out. Same as timeout = 5 seconds
-
-				// New in latest version. See `example/macInput.js` for usage
-				timeout: 5, // Takes precedence over wait if both are defined.
-				closeLabel: undefined, // String. Label for cancel button
-				actions: undefined, // String | Array<String>. Action label or list of labels in case of dropdown
-				dropdownLabel: undefined, // String. Label to be used if multiple actions
-				reply: false // Boolean. If notification should take input. Value passed as third argument in callback and event emitter.
+				wait: true // Wait for User Action against Notification or times out. Same as timeout = 5 seconds
 			},
 			function(err, response){
 				// Response is response from notification
+				if (err) console.error(err);
 			}
 		);
-
-		notifier.on('click', function(notifierObject, options, event){
-			// Triggers if `wait: true` and user clicks notification
-			console.log('test');
-		});
 	}
 };
