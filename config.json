@@ -6,11 +6,12 @@
 		},
 		"to": {
 			"hours": 20,
-			"minutes": 0
+			"minutes": n0
 		}
 	},
 	"setting": {
 		"system": true,
 		"apps": true
-	}
+	},
+	"notification": true
 }
